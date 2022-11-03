@@ -4,21 +4,27 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
-const routes = require('./routes/index');
 const handleErrors = require('./middlewares/handleErrors');
+const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const checkCors = require('./middlewares/checkCors');
+const { dbURL } = require('./utils/config');
 
-const { PORT = 3000, NODE_ENV = 'develop' } = process.env;
+const {
+  PORT = 3000,
+  NODE_ENV = 'develop',
+  DB_URL = dbURL,
+} = process.env;
 
 const app = express();
+
 app.use(helmet());
 app.use(checkCors);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+mongoose.connect(DB_URL);
 
 app.use(requestLogger);
 
