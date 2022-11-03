@@ -1,0 +1,28 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "Movie explorer api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtyemSavchenko/movies-explorer-api.git"
+  },
+  "author": "Artyem Savchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtyemSavchenko/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/ArtyemSavchenko/movies-explorer-api#readme",
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  }
+}
