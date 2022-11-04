@@ -13,7 +13,6 @@ const limiter = require('./middlewares/rateLimiter');
 
 const {
   PORT = 3000,
-  NODE_ENV = 'develop',
   DB_URL = dbURL,
 } = process.env;
 
@@ -38,7 +37,4 @@ app.use(errors());
 
 app.use(handleErrors);
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Приложение запущено на порте ${PORT}.\nРежим работы приложения '${NODE_ENV}'.`);
-});
+app.listen(PORT);
