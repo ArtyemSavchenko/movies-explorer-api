@@ -20,8 +20,8 @@ const {
 const app = express();
 
 app.use(limiter);
-app.use(checkCors);
 app.use(helmet());
+app.use(checkCors);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
