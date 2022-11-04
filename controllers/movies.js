@@ -40,7 +40,7 @@ module.exports.postMovies = (req, res, next) => {
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequest('Некорректные данные для создании карточки.'));
+        return next(new BadRequest('Некорректные данные для добавления фильма.'));
       }
       return next(err);
     });
@@ -51,14 +51,14 @@ module.exports.deleteMovies = (req, res, next) => {
   const { movieId } = req.params;
   Movie.findById(movieId)
     .orFail(() => {
-      throw new NotFound('Каточка не найдена.');
+      throw new NotFound(`Фильм с id '${movieId}' не найдена.`);
     })
     .then((movie) => {
       if (movie.owner.toString() !== userId) {
-        return next(new Forbidden('Невозможно удалить чужую карточку.'));
+        return next(new Forbidden('Невозможно удалить фильм другого пользователя.'));
       }
       return movie.remove()
-        .then(() => res.send({ message: 'Карточка удалена.' }));
+        .then(() => res.send({ message: 'Фильм удален.' }));
     })
     .catch(next);
 };
