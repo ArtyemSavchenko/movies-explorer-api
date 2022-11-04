@@ -6,3 +6,7 @@ module.exports.allowedCors = [
   'http://localhost:3001',
   'http://localhost:3000',
 ];
+module.exports.rateLimitConfig = {
+  windowMs: 600000,
+  max: 100,
+};
