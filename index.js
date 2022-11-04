@@ -9,6 +9,7 @@ const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const checkCors = require('./middlewares/checkCors');
 const { dbURL } = require('./utils/config');
+const limiter = require('./middlewares/rateLimiter');
 
 const {
   PORT = 3000,
@@ -18,6 +19,7 @@ const {
 
 const app = express();
 
+app.use(limiter);
 app.use(helmet());
 app.use(checkCors);
 
