@@ -5,6 +5,7 @@ const User = require('../models/user');
 const NotFound = require('../errors/NotFound');
 const Conflict = require('../errors/Conflict');
 const BadRequest = require('../errors/BadRequest');
+const { errorsText } = require('../utils/constants');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -22,12 +23,15 @@ module.exports.updateUser = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .orFail(() => {
-      throw new NotFound('Пользователь не найден.');
+      throw new NotFound(errorsText.userNotFound);
     })
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequest('Некорректные данные пользователя.'));
+        return next(new BadRequest(errorsText.badUserData));
+      }
+      if (err.code === 11000) {
+        return next(new Conflict(errorsText.userAlreadyExists));
       }
       return next(err);
     });
@@ -50,10 +54,10 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        return next(new Conflict('Пользователь с таким адресом электронной почты уже существует.'));
+        return next(new Conflict(errorsText.userAlreadyExists));
       }
       if (err.name === 'ValidationError') {
-        return next(new BadRequest('Некорректные данные для создания пользователя.'));
+        return next(new BadRequest(errorsText.badUserData));
       }
       return next(err);
     });

@@ -1,8 +1,10 @@
+const { errorsText } = require('../utils/constants');
+
 module.exports = (err, req, res, next) => {
-  const { statusCode = 500, message = 'Что-то пошло не так.' } = err;
+  const { statusCode = 500, message = errorsText.default } = err;
   res
     .status(statusCode)
-    .send({ message });
+    .send({ message: statusCode === 500 ? errorsText.default : message });
 
   next();
 };
