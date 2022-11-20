@@ -5,6 +5,7 @@ module.exports.allowedCors = [
   'http://mesto-domain.nomoredomains.icu',
   'http://localhost:3001',
   'http://localhost:3000',
+  '*',
 ];
 module.exports.rateLimitConfig = {
   windowMs: 600000,
