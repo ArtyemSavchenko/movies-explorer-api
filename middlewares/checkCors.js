@@ -1,8 +1,13 @@
 const { allowedCors } = require('../utils/config');
 
-const {
-  CORS = allowedCors,
+let {
+  CORS,
 } = process.env;
+if (!CORS) {
+  CORS = allowedCors;
+} else {
+  CORS = CORS.split('|');
+}
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;
