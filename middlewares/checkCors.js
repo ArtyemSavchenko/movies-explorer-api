@@ -1,17 +1,8 @@
 const { allowedCors } = require('../utils/config');
 
-let {
-  CORS,
-} = process.env;
-if (!CORS) {
-  CORS = allowedCors;
-} else {
-  CORS = CORS.split('|');
-}
-
 module.exports = (req, res, next) => {
   const { origin } = req.headers;
-  if (CORS.includes(origin)) {
+  if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
 
