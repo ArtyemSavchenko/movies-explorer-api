@@ -8,5 +8,5 @@ module.exports.allowedCors = [
 ];
 module.exports.rateLimitConfig = {
   windowMs: 600000,
-  max: 100,
+  max: 1000,
 };
