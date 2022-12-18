@@ -33,7 +33,7 @@ module.exports.deleteMovies = (req, res, next) => {
         return next(new Forbidden(errorsText.movieCannotBeDeleted));
       }
       return movie.remove()
-        .then(() => res.send({ message: 'Фильм удален.', id: movieId }));
+        .then(() => res.send({ message: 'Фильм удален.', _id: movieId }));
     })
     .catch(next);
 };
