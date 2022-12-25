@@ -1,5 +1,5 @@
 # movies-explorer-api
-`Express` `mongoose` `celebrate`
+`Express` `MongoDB` `celebrate`
 
 Api для сохранения понравившихся фильмов проекта [`movies-explorer`](https://github.com/ArtyemSavchenko/movies-explorer-frontend)
 
